@@ -134,7 +134,7 @@ void stst(char *fname)
 			dolabel();
 			lastst=statement(fname,FALSE);
 		}else{
-*/		
+*/
 issemicolon();
 
 			lastst=STEXP;

@@ -228,7 +228,7 @@ void vmmod(entry *itemp, entry *items)
 void vmor(entry *itemp, entry *items)
 {
 	if(TRACE) fprintf(output,";vmor(%s, %s)\n",itemp->name,items->name);
-	
+
 	vmpop();				/* ??? */
 	ol("or\t_primary,_secondary");
 }

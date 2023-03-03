@@ -192,7 +192,7 @@ void delmac(char *mac)
 void rmmac(void)
 {
 	macentry *ptr;
-	
+
 	ptr=macstart;
 	while(ptr){
 		free(ptr->lit);
@@ -230,7 +230,7 @@ int ifline(void)
 	while(1){
 		finline();
 		if(feof(input)) return(1);
-		
+
 		if(match("#ifdef")){
 			doifdef(TRUE);
 			continue;

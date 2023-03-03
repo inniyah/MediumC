@@ -21,12 +21,12 @@ void doconsts(list *table,T_storage stor)
 	entry *p;
 	char sname[NAMESIZE];
 	int num=0;												/* enums start from 0 */
-	
+
 	while(!match("}")){
 		if(!symname(sname)) error("Illegal symbol name");
 		if(find(sname))
 			error("Duplicate define");
-		else{	
+		else{
 			p=addsymbol(table,sname,stor,ENUM,CONST,ENUMSIZE);
 			if(match("=")) num=getint();
 			p->misc.ivalue=num++;
@@ -64,7 +64,7 @@ int getsize(entry *item, int what)
 			}
 			break;
  	}
- 	return(size);	
+ 	return(size);
 }
 
 /*************************************************************

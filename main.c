@@ -51,11 +51,11 @@ void main(int argc, char *argv[])
 				case 't':								/* append source to asm output*/
 					ctext=1;
 					break;
-					
+			
 					case 'a':								/* indicate # of args in functions */
 						aflag=0;
 						break;
-					
+			
 					case 'd':
 						bp=++p;
 						if(!*p) usage();
@@ -67,15 +67,15 @@ void main(int argc, char *argv[])
 						break;
 
 					case 'o':								/* specify output name */
-						bp=++p;									
+						bp=++p;							
 						while(*p) p++;
 						p--;
 						break;
-						
+				
 					case 'r':								/* debug compiler */
 						TRACE=1;
         		break;
-				
+		
 					default:
 						usage();
 			}
@@ -137,7 +137,7 @@ void main(int argc, char *argv[])
 	}
 
 	rmtable(glbtab);					/* remove glbtab */
-	rmmac();									/* remove macro list */		
+	rmmac();									/* remove macro list */
 	exit(errs!=0);						/* verify exit codes */
 }
 
@@ -169,7 +169,7 @@ void usage(void)
 {
 	fputs("usage: mcc [-art] [-d<sym>[=<value>]] [-o<OutputFile>] <InputFile>\n\n", stderr);
 	fputs("options:\n",stderr);
-	fputs("-a\t- indicate #of args passed into functions\n",stderr);
+	fputs("-a\t- indicate # of args passed into functions\n",stderr);
 	fputs("-r\t- trace compiler calls (for internal debuging only)\n",stderr);
 	fputs("-t\t- append source lines into OutputFile\n",stderr);
 	fputs("-d\t- define preprocessor symbol\n",stderr);
@@ -240,14 +240,14 @@ void dodebug(list *root,int f)
 {
 	char name[NAMESIZE+1];
 	entry *p;
-	
+
 	p=root->start;
 	while(p){
 		sprintf(name,"%s%s",(f==1?"+":" "),p->name);
 		printf("%9s%8s%8s%8s%7d%8d%8d%8d%8d%8d",
 			name,st[p->storage],tp[p->type],id[p->ident],
 			p->size,p,p->next,p->prev,p->further->start,p->stkoffs /*offset*/);
-if(p->endstmt) printf("--------------\n");						
+if(p->endstmt) printf("--------------\n");				
 		if( (((p->type==UNION)||(p->type==STRUCT))&&(p->ident==IDENT)) ||
 			(p->ident==FUNCTION)||(p->ident==PROTOTYPE))
 			dodebug(p->further,1);

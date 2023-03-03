@@ -27,7 +27,7 @@ int dolocal(T_storage stclass)
 {
 	char name[NAMESIZE];
 	entry *ptyp;
-	
+
 	blanks();
 	if(match("typedef"))
 		dotypedef(loctab);
@@ -57,9 +57,9 @@ void dolocmembers(entry *item,T_storage stor)
 {
 	entry *ptyp;
 	char name[NAMESIZE];
-	
+
 	item->further=(list*)calloc(1,sizeof(list));
-	
+
 	while(!match("}")){
 		if(match("struct"))
 			dostrun1(item->further,stor,STRUCT);
@@ -72,7 +72,7 @@ void dolocmembers(entry *item,T_storage stor)
 			if(ptyp=findtype(name)){
 				dosymbol(item->further,ptyp,stor,0);
 			}else
-				error("Declaration syntax error");	
+				error("Declaration syntax error");
 		}
 	}
 }
@@ -87,7 +87,7 @@ void offsetloc1(entry *item, int what)
 	int size;
 
 	if(what==UNION) return;
-	
+
 	p=item->further->end;
 	while(p){
 		p->offset=offset;
@@ -129,11 +129,11 @@ void dostrun1(list *root, T_storage stor, int what)
 					offsetloc1(tmp,what);
 					break;
 			}
-		}																				
+		}											
 
 		if(match(";")) return;
 
-		if(!(tmp=find(sname)))							/* declare struct var */	
+		if(!(tmp=find(sname)))							/* declare struct var */
 			error("Undefined enum, struct or union");
 		else
  			switch(what){
@@ -146,11 +146,11 @@ void dostrun1(list *root, T_storage stor, int what)
 			}
 		return;
 	}
-	
+
 	tmp=addsymbol(loctab,makename(),stor,what,IDENT,0);
 	switch(what){
 		case ENUM:
-			doconsts(root,stor);	
+			doconsts(root,stor);
 			dosymbol(root,tmp,stor,0);
 		case STRUCT:
 		case UNION:

@@ -94,19 +94,19 @@ int primary(entry *item)
 				item->lval1=0;
 				item->lval2=0;
 				return(0);
-				
+
 			case VARIABLE:
 				vmgetloc(item);
 				item->lval1=item->type;
 				item->lval2=0;
 				return(1);
-				
+
 			case POINTER:
 				vmgetloc(item);
 				item->lval1=INT;
 				item->lval2=item->type;
 				return(1);
-				
+
 			case ARRAY:
 				vmgetloc(item);
 				item->lval2=item->type;
@@ -133,13 +133,13 @@ int primary(entry *item)
 					item->lval1=0;
 					item->lval2=0;
 					return(1);
-				
+
 				case POINTER:
 					item->lval0=0;
 					item->lval1=0;
 					item->lval2=item->type;
 					return(1);
-									
+
 				case ARRAY:
 					immed();
 					prefix();
@@ -149,7 +149,7 @@ int primary(entry *item)
 			item->lval1=item->lval2=item->type;
 			item->lval2=0;
 					return(0);
-		
+
 				default:											/* ie FUNCTION */
 					blanks();
 					if(ch()!='(') error("undeclared variable");
@@ -208,7 +208,7 @@ void result(entry *val, entry *val2)
 
 /*********************************************************
 * better use library functions
-*********************************************************/		
+*********************************************************/
 int constant(int val[])
 {
 	if(number(val))

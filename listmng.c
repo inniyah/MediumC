@@ -75,7 +75,7 @@ entry *findtype(char *sname)
 		if((p->storage==TYPEDEF)&&astreq(sname,p->name,NAMEMAX)) return(p);
 		p=p->prev;
 	}
-	
+
 	return(NULL);
 }
 
@@ -88,7 +88,7 @@ entry *find(char *sname)
 	entry *ptr;
 
 	if(TRACE) fprintf(output,";find(%s)\n",sname);
-	
+
 	if(ptr=findloc(loctab,sname,ALL)) return(ptr);
 	if(ptr=findglb(glbtab,sname)) return(ptr);
 	return(NULL);
@@ -113,7 +113,7 @@ void rmtable(list *root)
 		p=p->prev;
 	}
 	root->entries=0;
-	root->start=root->end=NULL;	
+	root->start=root->end=NULL;
 }
 
 /***********************************************************
@@ -146,7 +146,7 @@ void trimtable(entry *item)
 		free(p);
 		p=p->prev;
 	}
-	loctab->end=item;	
+	loctab->end=item;
 	loctab->end->endstmt=0;
 	loctab->end->next=NULL;
 }

@@ -45,7 +45,7 @@ void newfunc(char *sname, T_type typ)
 		else{
 			chkstmtlist(fptr);								/* verify with prototype */
 			addfunc(fptr);										/* add function body */
-		}	
+		}
 	}else{
 		fptr=addsymbol(glbtab,fname,PUBLIC,typ,PROTOTYPE,0);
 		getstmtlist(fptr);									/* process statement list */
@@ -84,8 +84,8 @@ void getstmtlist(entry *fptr)
 			if(ptyp=findtype(typname))
 				getarg(fptr->further,ptyp);
 			else
-				error("unknown typedef");			
-			
+				error("unknown typedef");
+
 			if(match(",")){
 				blanks();
 				if(ch()==')') error("declaration syntax error");
@@ -133,13 +133,13 @@ if(match("void"))
 		if(ptyp=findtype(typname))
 			verarg(ptr,ptyp);								/* proto, arg type */
 		else
-			error("unknown typedef");			
+			error("unknown typedef");
 
 		if(match(",")){
 			blanks();
 			if(ch()==')') error("declaration syntax error");
 		}
-		ptr=ptr->next;	
+		ptr=ptr->next;
 	}
 	if(ptr){
 	 error("argnum2");

@@ -28,7 +28,7 @@ extern int G_lib;   /* see if we need comp library */
 void asheader(void)
 {
 	char str[80];
-	
+
 	sprintf(str,"\tinclude '%s\\c0s'",LIBDIR);
 	comment();
 	outstr(VERSION);
@@ -75,7 +75,7 @@ void astext(void)
 void asdata(void)
 {
 	char str[80];
-	
+
 	if(TRACE) fprintf(output,";gdata()\n");
   if(M_lib==TRUE){
 		outstr("\n;*******need mult/div standard library********\n");
@@ -200,7 +200,7 @@ void asdumplits(void)
 **********************************************************/
 void asdumpglbs(void)
 {
-	entry *p;	
+	entry *p;
 
 	p=glbtab->start;
 	while(p){								/* skip typedefs, idents and consts*/
@@ -222,29 +222,29 @@ void asdumpglbs(void)
 		ot(p->storage==EXTERN ? "extrn\t":"public\t");
 		outstr(p->name);
 		nl();
-		
+
 		underscore();
 		outstr(p->name);
 		switch(p->size){			/* only public?? */
 			case 1: ot("db\t");
 							outdec(p->misc.ivalue);
 							break;
-	
+
 			case 2: ot("dw\t");
 							outdec(p->misc.ivalue);
 							break;
-	
+
 			default:{						/* ?????? */
 							int i;
-							
+
 							ot("db\t");
 							for(i=1;i<p->size;i++) outstr("0,");
 							outstr("0");
 							}
-	
+
 		}
 		nl();
-		
+
 		p=p->next;
 		continue;
 	}

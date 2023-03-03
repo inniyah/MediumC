@@ -67,7 +67,7 @@ int heir1(entry *item)
 		if(heir1(&item2)) rvalue(&item2);
 		store(item);
 		return(0);
-	}else{	
+	}else{
 		fc=ch();
 		if(match("-=")||match("+=")||match("*=")||match("/=")||match("%=")||
 			match(">>=")||match("<<=")||match("&=")||match("^=")||match("|=")){
@@ -303,7 +303,7 @@ int heir6(entry *item)
 	blanks();
 	if(!sstreq("<") && !sstreq("<=") && !sstreq (">=") && !sstreq (">")) return(k);
 	if(sstreq ("<<") || sstreq (">>")) return (k);
-	
+
 	if(k)	rvalue(item);
 	while(1){
 		if(match("<=")){
@@ -387,7 +387,7 @@ int heir8(entry *item)
 
 	k=heir9(item);
 	blanks();
-	
+
 	if((ch()!='+') && (ch()!='-') || nch()=='=') return(k);
 	if(k) rvalue(item);
 	while(1){
@@ -420,7 +420,7 @@ int heir9(entry *item)
 	k=heir10(item);
 	blanks();
 	if(((ch()!='*') && (ch()!='/') && (ch()!='%')) || (nch()=='='))	return(k);
-	
+
 	if(k)	rvalue(item);
 	while(1){
 		if(match("*")){
@@ -555,7 +555,7 @@ int heir11(entry *item)
 
 	k=primary(item);
 	blanks();
-	
+
 if(ch()=='.') findmember(item);
 if((ch()=='-') && (nch()=='>')) warning("-> not implemented yet");
 
@@ -630,13 +630,13 @@ void findmember(entry *ptr)
 			if(strcmp(name,sptr->name)==0) break;
 			sptr=sptr->next;
 		}
-		if(sptr==0) error("not a struct or union member");	
+		if(sptr==0) error("not a struct or union member");
 
 /* we must verify member types
 if((ptr->ident!=VARIABLE)||(sptr->ident!=VARIABLE))
 	error("struct/union type mismatch");
 */
-	
+
 		ptr->offset+=sptr->offset;			/* offset from base name VERIFY*/
 		ptr->storage=sptr->storage;			/* new storage */
 		ptr->type=sptr->type;						/* new type */

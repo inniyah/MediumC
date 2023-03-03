@@ -79,11 +79,11 @@ void dostrun(list *root, T_storage stor, int what)
 					offsglbstruct(tmp,what);
 					break;
 			}
-		}																				
+		}										
 
 		if(match(";")) return;
 
-		if(!(tmp=findglb(glbtab,sname)))							/* declare struct var */	
+		if(!(tmp=findglb(glbtab,sname)))							/* declare struct var */
 			error("Undefined enum, struct or union");
 		else
  			switch(what){
@@ -99,7 +99,7 @@ void dostrun(list *root, T_storage stor, int what)
 			}
 		return;
 	}
-	
+
 	tmp=addsymbol(glbtab,makename(),stor,what,IDENT,0);
 	switch(what){
 		case ENUM:
@@ -124,7 +124,7 @@ void doglbmembers(entry *item,T_storage stor)
 {
 	entry *ptyp;
 	char name[NAMESIZE];
-	
+
 	item->further=(list*)calloc(1,sizeof(list));
 
 	while(!match("}")){
@@ -154,7 +154,7 @@ void offsglbstruct(entry *item,int what)
 	int offset=0;
 
 	if(what==UNION) return;
-	
+
 	p=item->further->start;
 	while(p){
 		p->offset=offset;
@@ -193,7 +193,7 @@ void declstun(list *table, entry *ptyp, T_storage stor)
 			case LSTATIC:
 				tmp=addsymbol(table,sname,stor,ptyp->ident,id,ptyp->size);
 				break;
-				
+
 			default:
 				error("Ughh, still error in compiler code...");
 		}
@@ -254,16 +254,16 @@ void dosymbol(list *root, entry *ptyp, T_storage stor, int fun)
 				tmp=addsymbol(root,sname,stor,ptyp->type,id,size);
 				if(root==loctab) tmp->stkoffs=stkp;
 				break;
-	
+
 			default:
 				tmp=addsymbol(root,sname,stor,ptyp->type,id,size);
 				break;
-		}	
+		}
 
 /*	here we can initiate values
 if(match("=")){
 }
-*/	
+*/
 		if(match(","))	continue;
 		if(match(";")) return;
 		error("declaration syntax error");

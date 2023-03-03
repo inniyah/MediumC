@@ -49,7 +49,7 @@ void error(char *err)
 void warning(char *warn)
 {
 	FILE *tempfile;
-	
+
 	tempfile=output;
 	output=stdout;
 	domsg(WARNING,warn);		/* output to screen */
