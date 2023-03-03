@@ -27,7 +27,7 @@ int getlabel(void)
 char *makename(void)
 {
 	static char name[NAMESIZE];
-	itoa(getlabel(),name,32);	
+	snprintf(name, NAMESIZE, "%d", getlabel());
 	return(name);
 }
 

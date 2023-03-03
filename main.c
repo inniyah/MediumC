@@ -7,10 +7,14 @@
 * author: Janusz J. Mlodzianowski, fizjm@univ.gda.pl
 **********************************************************/
 #include <stdio.h>
-#include <dir.h>
+#include <limits.h>
 #include "defs.h"
 #include "data.h"
 #include "externs.h"
+
+#ifndef MAXPATH
+#define MAXPATH PATH_MAX
+#endif
 
 /* local functions */
 void main(int argc, char *argv[]);
@@ -143,13 +147,10 @@ void main(int argc, char *argv[])
 char *foname(char *name)
 {
 	char fname[MAXPATH];
-	char drive[MAXDRIVE];
-	char dir[MAXDIR];
-	char ff[MAXFILE];
-	char ext[MAXEXT];
-
-	fnsplit(name,drive,dir,ff,ext);
-	fnmerge(fname,drive,dir,ff,".s");				/* append .s */
+	char *x;
+	strncpy(fname, name, MAXPATH);
+	x = strrchr(fname, '.');
+	strcpy(x, ".s");				/* append .s */
 	return(fname);
 }
 

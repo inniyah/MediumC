@@ -1,3 +1,0 @@
-scrap\data scrap\error scrap\expr scrap\function scrap\gen scrap\io+
-scrap\lex scrap\main scrap\preproc scrap\primary scrap\stmt scrap\sym+
-scrap\glbsym scrap\locsym scrap\while scrap\vm scrap\code scrap\listmng

@@ -7,7 +7,6 @@
 * author: Janusz J. Mlodzianowski, fizjm@univ.gda.pl
 **********************************************************/
 #include <stdio.h>
-#include <dir.h>
 #include "defs.h"
 #include "data.h"
 #include "externs.h"
