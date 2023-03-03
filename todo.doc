@@ -1,0 +1,60 @@
+MediumC. A list of things still to be done..
+
+1. Immediate needs.
+* Both structs and unions can be referenced by value only. One should be able
+to reference those by address too. This applies also to members:
+
+	struct str{
+	  int x;
+	  int y;
+	};
+
+	struct str a;	//seems OK
+	struct str *b;	//asm code needs to be checked
+
+	a.x;		//seems OK
+	b->x		//needs to be written
+
+The function processing struct/union members is findmember() found in expr.c.
+Although one can define recursive structures findmember() is not able to 
+process such variables yet.
+
+* The primary() function needs to be reviewed.
+
+* I still do not fully understand heir() function, and the role of
+lval0, lval1 and lval2 values which are still left from the original code.
+I would rather use "struct entry" fields instead.
+
+* functions processing global (e.g. dostrun(), etc) and local
+(e.g. dostrun1(), etc) unions and structs are very similar. It would be great
+to combine them into single functions.
+
+* All error and warning messages should be referenced from error.h.
+The error handling code has also to be reviewed. To avoid printing multiple 
+errors the erroneous lines should be killed.  
+
+* VM speed/size optimisation has to be rewritten.
+
+2. Next in line needs.
+* Support for Microchip/MPP (my own preprocessor) asm code
+-when I have more time.
+
+* Support for signed/unsigned data types.
+-should be easy.
+
+* Support for 2 byte int arithmetics.
+-should be easy.
+
+3. Future needs.
+* Support for multidimensional arrays.
+
+* Support for float arithmetics.
+-one could adapt some package (AN575?) and develop say 2 or 3 byte float
+float library. 
+
+* Support for other than 16x84 PICs.
+-basically one needs separate startup code for each chip.
+
+* Creating library functions (stdlib.h, stdio.h, math.h etc..)
+Over the years several splendid examples of PIC code were posted to PICLIST.
+It would be great to combine this code into libraries.

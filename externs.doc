@@ -1,0 +1,223 @@
+MediumC. Compiler functions summary.
+ 
+entry *findglb(list *root,char *sname);
+return ptr to an entry in a given list symbol table or NULL if not found
+
+entry *findloc(list *root,char *sname,int part);
+return ptr to an entry in a given statement part or entire list,
+or NULL if not found
+
+entry *findtype(char *sname);
+return ptr to a typedef entry in local and/or global symbol table
+or NULL if not found
+
+entry *find(char *sname);
+return ptr to an entry or NULL if not found. Search entire loctab and glbtab
+
+void rmtable(list *root);
+remove the entire table and release the memory
+
+entry *markend(void);
+mark the beginning of a recursive statement
+
+void trimtable(entry *item);
+trims the table by removing the entries up to indicated
+
+entry *addsymbol(list *root,char *sname,T_storage stor,T_type typ,T_ident id, unsigned int size);
+add entry in local symbol table
+
+void newfunc(char *sname, T_type typ);
+make a named function or add a new function
+
+void callfunc(char *fname);
+call a named function or the contents of the stack
+
+void error(char *err);
+print error message
+
+void warning(char *warn);
+print warning message
+
+void fatal(char *msg, int code);
+print fatal error message end exit to the operating system
+
+void errorsummary(void);
+print error summary
+
+void doglobal(T_storage stclass);
+parse top level declarations of typedef, enum, struct, union,
+other data types and functions
+
+void dosymbol(list *root, entry *ptyp, T_storage stor, int fun);
+declare variable, array, pointer or function
+
+int dolocal(T_storage stclass);
+parse local level declarations.
+
+void dolocenum(list *root,T_storage stor);
+process local definition of struct and union members and add entries
+to a particular table
+
+void expression(int comma);
+evaluate expression
+
+int heir1(entry *item);
+evaluate expression
+
+int getlabel(void);
+return next available internal label number
+
+char *makename(void);
+return next available internal label name
+
+void printlabel(int label);
+print specified number as label
+
+void gnlabel(int nlab);
+generate numeric label
+
+char outbyte(char c);
+print char to output file
+
+void outstr(char ptr[]);
+print string to output file
+
+void tab(void);
+print tab to output file
+
+void nl(void);
+print new line to output file
+
+void ol(char ptr[]);
+print tab, string and nl to output file
+
+void prefix(void);
+print underscore to output file
+
+void ot(char ptr[]);
+print tab and string to output file
+
+void outdec(int number);
+print int number to output file
+
+void store(entry *item);
+store item in VM memory
+
+void rvalue(entry *item);
+get rvalue item into primary register.
+
+void test(int label, int ft);
+
+void kill(void);
+kill a source line
+
+void finline(void);
+fills an input buffer with chars from input file
+
+char inchar(void);
+preprocess input, return char from buffer and advance
+
+char inbyte(void);
+return char from file or NULL if EOF
+
+char gch(void);
+return current char from line or NULL and advance line ptr
+
+char nch(void);
+return next char from line or NULL and do not advance line ptr
+
+char ch(void);
+return char from line and do not advance line ptr
+
+void issemicolon(void);
+semicolon enforcer
+
+void junk(void);
+skip over a junk text
+
+int endst(void);
+return 1 if ";" or NULL
+
+void needbrack(char *str);
+test for a bracket: "(",")","[","]"
+
+int alpha(char c);
+test if given character is ASCII or underscore
+
+int alnum(char c);
+test if given character is alphanumeric or underscore
+
+int sstreq(char *str1);
+
+int streq(char *str1, char *str2);
+int astreq(char *str1, char *str2, int len);
+
+int match(char *lit);
+if string found point to next element  
+
+void blanks(void);
+skip over blanks
+
+void doinclude();
+open an include file
+
+void doasm(void);
+enter mode where assembly language statements are passed
+
+void doundef(void);
+delete macro pointed by lptr
+
+void preprocess(void);
+
+void defmac(char *mac);
+define macro whose definition is pointed by mac
+
+void dodefine(void);
+define macro whose definition is pointed by lptr
+
+void delmac(char *mac);
+undefine given macro
+
+void rmmac(void);
+remove the entire macro list
+
+int primary(entry *item);
+get primary value
+
+int dbltest(entry *val1, entry *val2);
+
+void result(entry *val, entry *val2);
+determine type of binary operation ???
+
+int number(int val[]);
+get numeric value form input buffer
+int getint(void);
+int pstr(int val[]);
+
+int statement(char *fname, int func);
+statement parser
+
+void doconsts(list *root,T_storage stor);
+process the list in enum declaration
+
+int getsize(entry *item, int what);
+find size, in bytes, of an item
+
+int needsub(void);
+get the required array size
+
+int symname(char *sname);
+test if next input string is legal symbol name
+
+void ungetname(char *name);
+push name back into parser input buffer
+
+void multidef(char *sname);
+print error msg
+
+void addwhile(wsentry ws);
+void delwhile(void);
+wsentry *readwhile(void);
+wsentry *findwhile(void);
+wsentry *readswitch(void);
+void addcase(int val);

@@ -1,0 +1,157 @@
+MediumC. Code development details.
+ 
+The operation of the MediumC compiler is based on linked list approach.
+There are two lists controlling the compilation:
+
+glbsym - responsible for global declarations,  
+locsym - responsible for compound statement declarations.
+
+glbsym exists throughout the entire compilation phase. Items are
+added to the list as they are processed in input file.
+locsym exist only during processing of a compound statement.
+Recursive compound statements are processed as sections in locsym.
+When a particular statement is processed its section is trimmed off
+from the locysm.  
+
+Both lists consist of the root element:
+typedef struct list{
+  entry *start;		/* start of the list */
+  entry *end;		/* end of the list */
+  int entries;		/* # of entries */
+};
+
+and elements:
+
+typedef struct entry{
+  char name[NAMEMAX];	/* name of the item */
+  T_storage storage;	/* storage type */
+  T_type type;		/* type of the element */
+  T_ident ident;	/* ident */
+  unsigned int size;	/* size (in bytes) of the item */
+  int offset;		/* offset for struct/union */
+  int stkoffs;		/* offset from stack ptr (locsym only)*/
+  T_misc misc;		/* initial value */
+  int endstmt;		/* marks top of recursive statement (locsym only)*/
+  struct list *further;	/* for functions, structs and unions */
+  struct entry *prev;	/* ptr to the previous element */
+  struct entry *next;	/* ptr to the next element */
+
+  int lval0;		/* for compatibility with heirxx() functions */
+  int lval1;		/* should get rid of this.. */
+  int lval2;
+};
+
+misc is an union holding initial (if any) value of the item:
+
+typedef union {
+  char cvalue;
+  int ivalue;
+  float fvalue;
+};
+
+Whenever an item of structured type (struct, union, function, etc)
+is to be added to the list its name is entered into the main list.
+The members are entered into child list pointed by "further".
+The following example of the C code:
+
+	..
+	int x;
+	int y;
+	struct S{
+	 int s1;
+	 int s2;
+	};
+	int f(int a, int b);
+	..
+
+will produce the following glbsym list:
+
+	..->x->y->S->f->..
+	          |  |
+	          s1 a
+	          |  |
+	          s2 b
+
+In this way complex structures can be generated.
+
+While adding new elements, the list is first searched for duplicates.
+If none exist the item is added at the list end. glbsym list is searched
+from top to bottom and locsym is searched from bottom up to the nearest
+endstmt. This simple trick allows the compound statements to use local 
+identifiers. When searching for a variable both locsym (firstly) and 
+glbsym (secondly) are scanned.  
+All static variables are given assembler names identical to C source.
+All local variables are referenced with respect to stack pointer (stkp).
+Members of structs are referenced as offsets from the base name.
+Some arithmetics is needed when calculating offsets especially for
+local variables as they appear on the stack in reverse order.
+
+
+Important constants and variables controlling the compilation.
+
+Entries for "ident":
+CONST,VARIABLE,ARRAY,POINTER,FUNCTION,PROTOTYPE,IDENT
+
+Entries for "type":
+none,CHAR,INT,FLOAT,VOID,ENUM,STRUCT,UNION
+
+Entries for "storage":
+PUBLIC,AUTO,EXTERN,STATIC,LSTATIC,DEFAUTO,TYPEDEF
+
+Statement types (tokens):
+STIF,STWHILE,STRETURN,STBREAK,STCONT,STASM,STEXP,STDO,STFOR,STSWITCH
+ 
+NAMEMAX		- size of the idenfier		default: 8
+CHARSIZE	- size of the char value	default: 1
+INTSIZE		- sizeof the int value		default: 1
+ENUMSIZE	- size of the enum value	default: 1
+FLOATSIZE	- size of the float value	default: 1
+POINTERSIZE	- size of pointer		default: 1
+
+The above values can be changed to accommodate the different needs.
+However, the code generation functions must allow reconfiguration. 
+
+LIBDIR		- directory for libraries 	default -"./include"
+
+stkp		- holds the stack pointer value
+line[]		- c code input buffer
+lptr		- ptr to source text in line
+LINESIZE	- size of line buffer
+
+Preprocessor.
+The preprocessor operates also using a linked list with the list
+item of the form:
+
+typedef struct macentry{
+  char *lit;			/* new literal */
+  char *def;			/* its expansion */
+  struct macentry *next;	/* ptr to the next entry */
+};
+
+The list itself is pointed by macstart
+Each #define adds an entry into the list, #undef removes it.
+
+Errors and warnings.
+The compiler can generate errors, warnings and fatal errors.
+Errors are reserved for source code errors (missing ";", etc), warnings
+indicate ambiguities while fatals are reserved for internal errors
+(not enough memory, file access errors, etc). All messages should be combined
+in error.h and should be passed to a particular function by name and not
+value (this would allow better message control). For the time being file
+error.h is not used.
+Error and warning processing has to be verified and rewritten.  
+
+Assembler code generator.
+The statement parser is independent from the code generation module.
+The compiler generates assembler code for a Virtual Machine (VM). Each VM
+instruction in turn generates code for a particular processor. By changing
+the VM code the compiler can be ported to support different processors. 
+The VM details are described in ASSEMBLE.DOC file.
+
+Include functions.
+All functions found in "include" directory are from the original John Favata's
+source. I only changed the name of 16C84.h file to c0.s.
+
+Text editor hint.
+To write the source code I used text editor (good old WordStar ...)
+with tabulator set to 3. 

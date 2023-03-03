@@ -1,0 +1,117 @@
+MediumC. Language reference.
+
+1. Storage.
+extern
+static
+public
+auto
+register		- recognised but ignored
+typedef			- recognised but ignored
+
+
+2. Data types.
+void
+char
+int			- still processed as char
+float			- still processed as char
+
+enum id {..};		- type id description only
+enum id {..} var;	- type id description and variable entry 
+enum id var;		- enum variable entry
+enum {..} var;		- enum variable entry, no type id
+
+each of the enumerated value can be initialised:
+<name>=<value>
+
+struct id {..};		- type id description only
+struct id {..} var;	- type id description and variable entry 
+struct id var;		- struct variable entry
+struct {..} var;	- struct variable entry, no type id
+
+union id {..};		- type id description only
+union id {..} var;	- type id description and variable entry 
+union id var;		- union variable entry
+union {..} var;		- union variable entry, no type id
+
+Structs and unions can be recursively declared, however in expressions
+only simple structures are allowed (see todo.doc). 
+
+
+3. Arrays.
+<type> <name>[<size>];
+Only one dimensional arrays are allowed.
+
+
+4. Functions and Prototypes.
+compiler supports ANSI prototypes and new style of parameter passing:
+<type> foo(<type> <variable>,..);
+
+<type> foo(<type> <variable>,..)
+{..}
+
+prototypes are recognised but are ignored
+functions without <type> are assumed to be int.
+
+
+5. Operators.
+-=, +=, *=, /=, %=, >>=, <<=, &=, ^=, |=
+||, &&, ==, !=, <=, >=, >, < 
+|, ^, &, >>, <<, ~
+=, +, -, *, /, %, ++, --, ~, !
+*(ptr), &(addr), sizof(..)
+
+
+6. Selection.
+if(<expr>)
+  <statement>;
+else
+  <statement>;
+
+
+<expr1> ? <expr2>:<expr3>
+
+switch(<expr>){
+  case <item>:<statement>;
+  case <item>:<statement>;
+  ...
+  default:<statement>;
+}
+
+
+7. Iteration.
+while(<expr>)
+  <statement>;
+
+do
+  <statement>;
+while(<expr>;
+
+for(<expr1>;<expr2>;<expr3>)
+  <statement>;
+
+
+8. Control flow.
+return(..)
+break
+continue
+
+
+9. Comments:
+/* comment */		- classic C
+// comment		- one line C++
+
+
+10. Compiler directives:
+#asm
+#endasm
+#include			- <file>, "file"
+#define
+#undef
+#ifdef
+#ifndef
+#else
+#endif
+
+
+10. Warning and error messages.
+still in development, see error.h

@@ -1,0 +1,848 @@
+
+ Start  Stop   Length Name               Class
+
+ 00000H 003F5H 003F6H _TEXT              CODE
+ 003F6H 003F6H 00000H DATA_TEXT          CODE
+ 003F6H 0064BH 00256H ERROR_TEXT         CODE
+ 0064CH 017EBH 011A0H EXPR_TEXT          CODE
+ 017ECH 01E3CH 00651H FUNCTION_TEXT      CODE
+ 01E3DH 02074H 00238H GEN_TEXT           CODE
+ 02075H 02214H 001A0H IO_TEXT            CODE
+ 02215H 0248BH 00277H LEX_TEXT           CODE
+ 0248CH 02A97H 0060CH MAIN_TEXT          CODE
+ 02A98H 0321EH 00787H PREPROC_TEXT       CODE
+ 0321FH 039E6H 007C8H PRIMARY_TEXT       CODE
+ 039E7H 0434DH 00967H STMT_TEXT          CODE
+ 0434EH 04557H 0020AH SYM_TEXT           CODE
+ 04558H 04BBFH 00668H GLBSYM_TEXT        CODE
+ 04BC0H 04FECH 0042DH LOCSYM_TEXT        CODE
+ 04FEDH 0513FH 00153H WHILE_TEXT         CODE
+ 05140H 05C3DH 00AFEH VM_TEXT            CODE
+ 05C3EH 060A4H 00467H CODE_TEXT          CODE
+ 060A5H 0642AH 00386H LISTMNG_TEXT       CODE
+ 0642BH 06465H 0003BH IOERROR_TEXT       CODE
+ 06466H 06499H 00034H EXIT_TEXT          CODE
+ 0649AH 0649AH 00000H HEAPLEN_TEXT       CODE
+ 0649AH 0649AH 00000H STKLEN_TEXT        CODE
+ 0649AH 064C8H 0002FH ATEXIT_TEXT        CODE
+ 064C9H 0661DH 00155H MALLOC_TEXT        CODE
+ 0661EH 06697H 0007AH BRK_TEXT           CODE
+ 06698H 06698H 00000H CTYPE_TEXT         CODE
+ 06698H 068C8H 00231H FOPEN_TEXT         CODE
+ 068C9H 06A52H 0018AH OPEN_TEXT          CODE
+ 06A53H 06A9DH 0004BH OPENA_TEXT         CODE
+ 06A9EH 06A9EH 00000H FILES_TEXT         CODE
+ 06A9EH 06A9EH 00000H FILES2_TEXT        CODE
+ 06A9EH 06A9EH 00000H FMODE_TEXT         CODE
+ 06A9EH 06BAFH 00112H FSEEK_TEXT         CODE
+ 06BB0H 06D55H 001A6H GETC_TEXT          CODE
+ 06D56H 06D80H 0002BH IOCTL_TEXT         CODE
+ 06D81H 06D98H 00018H ISATTY_TEXT        CODE
+ 06D99H 06E76H 000DEH SETVBUF_TEXT       CODE
+ 06E77H 06F01H 0008BH FCLOSE_TEXT        CODE
+ 06F02H 06F32H 00031H CLOSE_TEXT         CODE
+ 06F33H 06F58H 00026H CLOSEA_TEXT        CODE
+ 06F59H 06F79H 00021H XFCLOSE_TEXT       CODE
+ 06F7AH 06F9CH 00023H XFFLUSH_TEXT       CODE
+ 06F9DH 0705EH 000C2H READ_TEXT          CODE
+ 0705FH 0707CH 0001EH READA_TEXT         CODE
+ 0707DH 07195H 00119H WRITE_TEXT         CODE
+ 07196H 071DFH 0004AH WRITEA_TEXT        CODE
+ 071E0H 0721AH 0003BH ACCESS_TEXT        CODE
+ 0721BH 07247H 0002DH LSEEK_TEXT         CODE
+ 07248H 07335H 000EEH LTOA_TEXT          CODE
+ 07336H 073BCH 00087H TMPNAM_TEXT        CODE
+ 073BDH 073D6H 0001AH UNLINK_TEXT        CODE
+ 073D7H 07412H 0003CH STRCAT_TEXT        CODE
+ 07413H 0742FH 0001DH STRLEN_TEXT        CODE
+ 07430H 07460H 00031H STRCMP_TEXT        CODE
+ 07461H 07484H 00024H STRCPY_TEXT        CODE
+ 07485H 074A5H 00021H MEMCPY_TEXT        CODE
+ 074A6H 074E6H 00041H MEMSET_TEXT        CODE
+ 074E7H 07505H 0001FH CHMODA_TEXT        CODE
+ 07506H 07575H 00070H EOF_TEXT           CODE
+ 07576H 075F5H 00080H FFLUSH_TEXT        CODE
+ 075F6H 07614H 0001FH PRINTF_TEXT        CODE
+ 07615H 07842H 0022EH PUTC_TEXT          CODE
+ 07843H 07D72H 00530H VPRINTER_TEXT      CODE
+ 07D73H 07EBEH 0014CH FREE_TEXT          CODE
+ 07EBFH 07EF4H 00036H CLOSEALL_TEXT      CODE
+ 07EF5H 07F12H 0001EH FPRINTF_TEXT       CODE
+ 07F13H 07F45H 00033H FPUTS_TEXT         CODE
+ 07F46H 07F55H 00010H ABS_TEXT           CODE
+ 07F56H 07FAAH 00055H CALLOC_TEXT        CODE
+ 07FABH 08020H 00076H FNMERGE_TEXT       CODE
+ 08021H 0822CH 0020CH FNSPLIT_TEXT       CODE
+ 0822DH 08299H 0006DH SPRINTF_TEXT       CODE
+ 0829AH 082C4H 0002BH STPCPY_TEXT        CODE
+ 082C5H 082F9H 00035H STRDUP_TEXT        CODE
+ 082FAH 08327H 0002EH STRNCPY_TEXT       CODE
+ 08330H 09E0BH 01ADCH _DATA              DATA
+ 09E0CH 09E0FH 00004H _EMUSEG            DATA
+ 09E10H 09E11H 00002H _CRTSEG            DATA
+ 09E12H 09E15H 00004H _CVTSEG            DATA
+ 09E16H 09E21H 0000CH _SCNSEG            DATA
+ 09E22H 0A981H 00B60H _BSS               BSS
+ 0A982H 0A982H 00000H _BSSEND            STACK
+ 0A990H 0AA0FH 00080H _STACK             STACK
+
+  Address         Publics by Name
+
+ 0000:0205       DGROUP@
+ 0833:0188       emws_adjust
+ 0833:018C       emws_BPsafe
+ 0833:0184       emws_control
+ 0833:018A       emws_fixSeg
+ 0833:016E       emws_initialSP
+ 0833:00AE       emws_limitSP
+ 0833:017E       emws_nmiVector
+ 0833:017A       emws_saveVector
+ 0833:018E       emws_stamp
+ 0833:0182       emws_status
+ 0833:0186       emws_TOS
+ 0833:0192       emws_version
+ 0000:0351       LXMUL@
+ 0000:03A3       OVERFLOW@
+ 0000:03B3       SCOPY@
+ 0000:03CF       SPUSH@
+ 0000:01ED       _abort
+ 07F4:0006       _abs
+ 071E:0000       _access
+ 04FE:0102       _addcase
+ 017E:04CB       _addfunc
+ 060A:02D4       _addsymbol
+ 04FE:000D       _addwhile
+ 0833:1B8E       _aflag
+ 0221:0120       _alnum
+ 0221:00F6       _alpha
+ 0833:251A       _argstk
+ 05C3:027B       _asargs
+ 05C3:00FF       _asdata
+ 05C3:037B       _asdumpglbs
+ 05C3:02BC       _asdumplits
+ 05C3:000E       _asheader
+ 05C3:0079       _asprologue
+ 05C3:00C9       _astext
+ 05C3:0063       _astrailer
+ 0221:01A2       _astreq
+ 0649:000A       _atexit
+ 0221:023C       _blanks
+ 0661:0066       _brk
+ 017E:0564       _callfunc
+ 07F5:0006       _calloc
+ 0207:018F       _ch
+ 017E:0201       _chkstmtlist
+ 06F0:0002       _close
+ 0833:1B8C       _cmode
+ 039E:02B3       _compound
+ 0321:039E       _constant
+ 02A9:048C       _cpp
+ 0833:2370       _ctext
+ 0321:032A       _dbltest
+ 0248:0570       _debuglist
+ 0248:046D       _debugmacros
+ 0248:05AB       _debugone
+ 0455:03DB       _declstun
+ 02A9:0170       _defmac
+ 02A9:02BE       _delmac
+ 04FE:0064       _delwhile
+ 02A9:0124       _doasm
+ 039E:086B       _dobreak
+ 039E:0744       _docase
+ 0434:000E       _doconsts
+ 039E:0898       _docont
+ 0248:04A3       _dodebug
+ 039E:07BA       _dodefault
+ 02A9:0198       _dodefine
+ 039E:0471       _dodo
+ 039E:0531       _dofor
+ 0455:02B8       _doglbmembers
+ 0455:0008       _doglobal
+ 039E:0329       _doif
+ 02A9:035B       _doifdef
+ 02A9:0008       _doinclude
+ 04BC:0000       _dolocal
+ 04BC:00E1       _dolocmembers
+ 003F:00E3       _domsg
+ 039E:080A       _doreturn
+ 0455:00F3       _dostrun
+ 04BC:0208       _dostrun1
+ 039E:0678       _doswitch
+ 0455:04FF       _dosymbol
+ 0455:0656       _dotypedef
+ 02A9:024A       _doundef
+ 039E:03D4       _dowhile
+ 039E:08D6       _dumpsw
+ 0221:0081       _endst
+ 0833:236C       _endws
+ 0833:0088       _environ
+ 0750:0006       _eof
+ 0833:0194       _errcnt
+ 0833:2374       _errfile
+ 0833:0094       _errno
+ 003F:0006       _error
+ 003F:0172       _errorsummary
+ 0833:05AA       _errs
+ 0646:0007       _exit
+ 0064:000C       _expression
+ 003F:00B3       _fatal
+ 06E7:0007       _fclose
+ 07EB:000F       _fcloseall
+ 0669:020B       _fdopen
+ 0833:2442       _fexitlab
+ 0757:0006       _fflush
+ 06BB:009D       _fgetc
+ 06BB:019A       _fgetchar
+ 060A:013F       _find
+ 060A:0005       _findglb
+ 060A:0059       _findloc
+ 02A9:0288       _findmac
+ 0064:1120       _findmember
+ 060A:00BA       _findtype
+ 04FE:00A9       _findwhile
+ 0207:0020       _finline
+ 02A9:006D       _fixiname
+ 07FA:000B       _fnmerge
+ 0802:008F       _fnsplit
+ 0248:02BF       _foname
+ 0669:01BF       _fopen
+ 07EF:0005       _fprintf
+ 0761:0020       _fputc
+ 0761:015C       _fputchar
+ 07F1:0003       _fputs
+ 07D7:0126       _free
+ 0669:01E3       _freopen
+ 06A9:0055       _fseek
+ 06A9:00BD       _ftell
+ 05C3:01CB       _gaslint
+ 05C3:01ED       _gasrint
+ 0207:0144       _gch
+ 017E:030B       _getarg
+ 0321:051D       _getint
+ 01E3:000D       _getlabel
+ 0434:00B0       _getsize
+ 017E:00D0       _getstmtlist
+ 0833:1B92       _glbtab
+ 01E3:0066       _gnlabel
+ 0833:0F46       _G_lib
+ 0064:004D       _heir1
+ 0064:0D3D       _heir10
+ 0064:0FBB       _heir11
+ 0064:0275       _heir1a
+ 0064:036D       _heir1b
+ 0064:040E       _heir1c
+ 0064:04AE       _heir2
+ 0064:0596       _heir3
+ 0064:0654       _heir4
+ 0064:073C       _heir5
+ 0064:0813       _heir6
+ 0064:0A2C       _heir7
+ 0064:0B50       _heir8
+ 0064:0C2A       _heir9
+ 0833:05AC       _id
+ 0833:093E       _iflevel
+ 02A9:03AF       _ifline
+ 0514:0212       _immed
+ 0207:0117       _inbyte
+ 0207:00E7       _inchar
+ 0833:2440       _inclsp
+ 0833:2446       _inclstk
+ 0833:2372       _input
+ 0833:1AF2       _input2
+ 06D5:0006       _ioctl
+ 06D8:0001       _isatty
+ 0221:0005       _issemicolon
+ 0724:0087       _itoa
+ 0221:0029       _junk
+ 02A9:0767       _keepch
+ 0207:0005       _kill
+ 0833:0B04       _lastst
+ 0833:1AF6       _line
+ 0833:236A       _litlab
+ 0833:2444       _litptr
+ 0833:1B94       _litq
+ 0833:2366       _loctab
+ 0833:2368       _lptr
+ 0721:000B       _lseek
+ 0724:00CE       _ltoa
+ 0833:2518       _macstart
+ 0248:000C       _main
+ 01E3:0020       _makename
+ 064C:00EC       _malloc
+ 060A:0214       _markend
+ 0221:01FE       _match
+ 0748:0005       _memcpy
+ 074A:002E       _memset
+ 0833:2526       _mline
+ 0833:0942       _mptr
+ 0434:01E7       _multidef
+ 0833:0F42       _M_lib
+ 0207:016C       _nch
+ 0833:1B90       _ncmp
+ 0221:00B8       _needbrack
+ 0434:0108       _needsub
+ 017E:000C       _newfunc
+ 01E3:00F4       _nl
+ 0321:03EF       _number
+ 0833:0562       _nxtlab
+ 04BC:01D2       _offsetloc1
+ 0455:03A6       _offsglbstruct
+ 04BC:03C9       _offslocstruct
+ 04BC:03F9       _offslocunion
+ 01E3:0108       _ol
+ 068C:003A       _open
+ 01E3:0131       _ot
+ 01E3:008C       _outbyte
+ 05C3:020F       _outcase
+ 01E3:014D       _outdec
+ 0833:244C       _output
+ 01E3:00B9       _outstr
+ 0248:03AB       _parse
+ 039E:0093       _parsestdecl
+ 01E3:0125       _prefix
+ 02A9:033D       _preprocess
+ 0321:0107       _primary
+ 075F:0006       _printf
+ 01E3:0044       _printlabel
+ 0321:0645       _pstr
+ 0321:06AD       _qstr
+ 06F9:000D       _read
+ 04FE:00DC       _readswitch
+ 04FE:007E       _readwhile
+ 0321:0359       _result
+ 02A9:0311       _rmmac
+ 060A:019E       _rmtable
+ 01E3:01C1       _rvalue
+ 0661:0075       _sbrk
+ 074A:0006       _setmem
+ 06D9:0009       _setvbuf
+ 0833:0940       _skiplevel
+ 0321:0757       _spechar
+ 0822:0037       _sprintf
+ 0221:0150       _sstreq
+ 0833:0624       _st
+ 0833:2516       _startws
+ 039E:0007       _statement
+ 0833:2364       _stkp
+ 01E3:017E       _store
+ 0829:000A       _stpcpy
+ 073D:0007       _strcat
+ 0743:0000       _strcmp
+ 0746:0001       _strcpy
+ 082C:0005       _strdup
+ 0221:0171       _streq
+ 0741:0003       _strlen
+ 082F:000A       _strncpy
+ 039E:00FB       _stst
+ 0833:244E       _swstcase
+ 0833:2376       _swstlab
+ 0833:236E       _swstp
+ 0434:0171       _symname
+ 0321:000F       _symsizeof
+ 0833:0F44       _S_lib
+ 01E3:00E0       _tab
+ 01E3:020A       _test
+ 0733:0051       _tmpnam
+ 0833:05E4       _tp
+ 0833:1AF4       _TRACE
+ 060A:0249       _trimtable
+ 0724:00B1       _ultoa
+ 0434:01CA       _ungetname
+ 073B:000D       _unlink
+ 0248:032C       _usage
+ 017E:0407       _verarg
+ 0248:0311       _version
+ 0514:0228       _vmadd
+ 0514:03E8       _vmand
+ 0514:0548       _vmbool
+ 0514:08A4       _vmcall
+ 0514:091A       _vmcallstk
+ 0514:0515       _vmcom
+ 0514:05CA       _vmdec
+ 0514:02E5       _vmdiv
+ 0514:061A       _vmeq
+ 0514:075F       _vmge
+ 0514:011E       _vmgetloc
+ 0514:0000       _vmgetmem
+ 0514:071E       _vmgt
+ 0514:057A       _vminc
+ 0514:01B7       _vmindirect
+ 0514:093C       _vmjump
+ 0514:06DD       _vmle
+ 0514:04D8       _vmlneg
+ 0514:069C       _vmlt
+ 0514:0326       _vmmod
+ 0514:0A85       _vmmodstk
+ 0514:02A4       _vmmult
+ 0514:065B       _vmne
+ 0514:04A5       _vmneg
+ 0514:0368       _vmor
+ 0514:0A28       _vmpop
+ 0514:09EF       _vmpush
+ 0514:007C       _vmputmem
+ 0514:0183       _vmputstk
+ 0514:08EE       _vmret
+ 0514:0464       _vmsl
+ 0514:0423       _vmsr
+ 0514:0263       _vmsub
+ 0514:01E6       _vmswap
+ 0514:0A5A       _vmswapstk
+ 0514:0986       _vmtestjump
+ 0514:0863       _vmuge
+ 0514:0822       _vmugt
+ 0514:07E1       _vmule
+ 0514:07A0       _vmult
+ 0514:03A3       _vmxor
+ 0822:0059       _vsprintf
+ 0833:0196       _warncnt
+ 003F:0073       _warning
+ 0707:000D       _write
+ 0833:243E       _wsptr
+ 0833:0096       __8087
+ 0833:0084       __argc
+ 0833:0086       __argv
+ 0833:17B2       __atexitcnt
+ 0833:25BC       __atexittbl
+ 0833:00A6       __brklvl
+ 074E:0007       __chmod
+ 06F3:0003       __close
+ 0833:17B4       __ctype
+ 0000:0000  Abs  __cvtfak
+ 0833:1746       __doserrno
+ 0833:1748       __dosErrorToSV
+ 0833:008A       __envLng
+ 0833:008C       __envseg
+ 0833:008E       __envSize
+ 0000:012A       __exit
+ 0833:17A2       __exitbuf
+ 0833:17A6       __exitfopen
+ 0833:17AA       __exitopen
+ 06BB:0088       __fgetc
+ 0833:1A1E       __fmode
+ 0761:0005       __fputc
+ 0761:0173       __FPUTN
+ 0833:00A2       __heapbase
+ 0833:17AE       __heaplen
+ 0833:00AA       __heaptop
+ 0833:0074       __Int0Vector
+ 0833:0078       __Int4Vector
+ 0833:007C       __Int5Vector
+ 0833:0080       __Int6Vector
+ 0642:000B       __IOERROR
+ 0724:0008       __LONGTOA
+ 0733:0006       __MKNAME
+ 0833:1A20       __notUmask
+ 06A5:0003       __open
+ 0833:19F6       __openfd
+ 0833:0092       __osmajor
+ 0833:0093       __osminor
+ 0833:0090       __psp
+ 0705:000F       __read
+ 0000:038D       __REALCVT
+ 0833:1AE2       __RealCvtVector
+ 0000:01B0       __restorezero
+ 0833:1AE6       __ScanTodVector
+ 0000:020F       __setargv
+ 0000:0301       __setenvp
+ 0833:0098       __StartTime
+ 0833:1A22       __stdinStarted
+ 0833:1A24       __stdoutStarted
+ 0833:17B0       __stklen
+ 0833:18B6       __streams
+ 0833:2642       __tmpnum
+ 0833:0092       __version
+ 0784:002E       __VPRINTER
+ 0719:0006       __write
+ 06F5:0009       __xfclose
+ 06F7:000A       __xfflush
+ 0661:000E       ___brk
+ 0833:009E       ___brklvl
+ 0833:2640       ___first
+ 0833:009C       ___heapbase
+ 0833:00A0       ___heaptop
+ 0833:263C       ___last
+ 064C:0009       ___pull_free_block
+ 0833:263E       ___rover
+ 0661:0032       ___sbrk
+
+  Address         Publics by Value
+
+ 0000:0000  Abs  __cvtfak
+ 0000:012A       __exit
+ 0000:01B0       __restorezero
+ 0000:01ED       _abort
+ 0000:0205       DGROUP@
+ 0000:020F       __setargv
+ 0000:0301       __setenvp
+ 0000:0351       LXMUL@
+ 0000:038D       __REALCVT
+ 0000:03A3       OVERFLOW@
+ 0000:03B3       SCOPY@
+ 0000:03CF       SPUSH@
+ 003F:0006       _error
+ 003F:0073       _warning
+ 003F:00B3       _fatal
+ 003F:00E3       _domsg
+ 003F:0172       _errorsummary
+ 0064:000C       _expression
+ 0064:004D       _heir1
+ 0064:0275       _heir1a
+ 0064:036D       _heir1b
+ 0064:040E       _heir1c
+ 0064:04AE       _heir2
+ 0064:0596       _heir3
+ 0064:0654       _heir4
+ 0064:073C       _heir5
+ 0064:0813       _heir6
+ 0064:0A2C       _heir7
+ 0064:0B50       _heir8
+ 0064:0C2A       _heir9
+ 0064:0D3D       _heir10
+ 0064:0FBB       _heir11
+ 0064:1120       _findmember
+ 017E:000C       _newfunc
+ 017E:00D0       _getstmtlist
+ 017E:0201       _chkstmtlist
+ 017E:030B       _getarg
+ 017E:0407       _verarg
+ 017E:04CB       _addfunc
+ 017E:0564       _callfunc
+ 01E3:000D       _getlabel
+ 01E3:0020       _makename
+ 01E3:0044       _printlabel
+ 01E3:0066       _gnlabel
+ 01E3:008C       _outbyte
+ 01E3:00B9       _outstr
+ 01E3:00E0       _tab
+ 01E3:00F4       _nl
+ 01E3:0108       _ol
+ 01E3:0125       _prefix
+ 01E3:0131       _ot
+ 01E3:014D       _outdec
+ 01E3:017E       _store
+ 01E3:01C1       _rvalue
+ 01E3:020A       _test
+ 0207:0005       _kill
+ 0207:0020       _finline
+ 0207:00E7       _inchar
+ 0207:0117       _inbyte
+ 0207:0144       _gch
+ 0207:016C       _nch
+ 0207:018F       _ch
+ 0221:0005       _issemicolon
+ 0221:0029       _junk
+ 0221:0081       _endst
+ 0221:00B8       _needbrack
+ 0221:00F6       _alpha
+ 0221:0120       _alnum
+ 0221:0150       _sstreq
+ 0221:0171       _streq
+ 0221:01A2       _astreq
+ 0221:01FE       _match
+ 0221:023C       _blanks
+ 0248:000C       _main
+ 0248:02BF       _foname
+ 0248:0311       _version
+ 0248:032C       _usage
+ 0248:03AB       _parse
+ 0248:046D       _debugmacros
+ 0248:04A3       _dodebug
+ 0248:0570       _debuglist
+ 0248:05AB       _debugone
+ 02A9:0008       _doinclude
+ 02A9:006D       _fixiname
+ 02A9:0124       _doasm
+ 02A9:0170       _defmac
+ 02A9:0198       _dodefine
+ 02A9:024A       _doundef
+ 02A9:0288       _findmac
+ 02A9:02BE       _delmac
+ 02A9:0311       _rmmac
+ 02A9:033D       _preprocess
+ 02A9:035B       _doifdef
+ 02A9:03AF       _ifline
+ 02A9:048C       _cpp
+ 02A9:0767       _keepch
+ 0321:000F       _symsizeof
+ 0321:0107       _primary
+ 0321:032A       _dbltest
+ 0321:0359       _result
+ 0321:039E       _constant
+ 0321:03EF       _number
+ 0321:051D       _getint
+ 0321:0645       _pstr
+ 0321:06AD       _qstr
+ 0321:0757       _spechar
+ 039E:0007       _statement
+ 039E:0093       _parsestdecl
+ 039E:00FB       _stst
+ 039E:02B3       _compound
+ 039E:0329       _doif
+ 039E:03D4       _dowhile
+ 039E:0471       _dodo
+ 039E:0531       _dofor
+ 039E:0678       _doswitch
+ 039E:0744       _docase
+ 039E:07BA       _dodefault
+ 039E:080A       _doreturn
+ 039E:086B       _dobreak
+ 039E:0898       _docont
+ 039E:08D6       _dumpsw
+ 0434:000E       _doconsts
+ 0434:00B0       _getsize
+ 0434:0108       _needsub
+ 0434:0171       _symname
+ 0434:01CA       _ungetname
+ 0434:01E7       _multidef
+ 0455:0008       _doglobal
+ 0455:00F3       _dostrun
+ 0455:02B8       _doglbmembers
+ 0455:03A6       _offsglbstruct
+ 0455:03DB       _declstun
+ 0455:04FF       _dosymbol
+ 0455:0656       _dotypedef
+ 04BC:0000       _dolocal
+ 04BC:00E1       _dolocmembers
+ 04BC:01D2       _offsetloc1
+ 04BC:0208       _dostrun1
+ 04BC:03C9       _offslocstruct
+ 04BC:03F9       _offslocunion
+ 04FE:000D       _addwhile
+ 04FE:0064       _delwhile
+ 04FE:007E       _readwhile
+ 04FE:00A9       _findwhile
+ 04FE:00DC       _readswitch
+ 04FE:0102       _addcase
+ 0514:0000       _vmgetmem
+ 0514:007C       _vmputmem
+ 0514:011E       _vmgetloc
+ 0514:0183       _vmputstk
+ 0514:01B7       _vmindirect
+ 0514:01E6       _vmswap
+ 0514:0212       _immed
+ 0514:0228       _vmadd
+ 0514:0263       _vmsub
+ 0514:02A4       _vmmult
+ 0514:02E5       _vmdiv
+ 0514:0326       _vmmod
+ 0514:0368       _vmor
+ 0514:03A3       _vmxor
+ 0514:03E8       _vmand
+ 0514:0423       _vmsr
+ 0514:0464       _vmsl
+ 0514:04A5       _vmneg
+ 0514:04D8       _vmlneg
+ 0514:0515       _vmcom
+ 0514:0548       _vmbool
+ 0514:057A       _vminc
+ 0514:05CA       _vmdec
+ 0514:061A       _vmeq
+ 0514:065B       _vmne
+ 0514:069C       _vmlt
+ 0514:06DD       _vmle
+ 0514:071E       _vmgt
+ 0514:075F       _vmge
+ 0514:07A0       _vmult
+ 0514:07E1       _vmule
+ 0514:0822       _vmugt
+ 0514:0863       _vmuge
+ 0514:08A4       _vmcall
+ 0514:08EE       _vmret
+ 0514:091A       _vmcallstk
+ 0514:093C       _vmjump
+ 0514:0986       _vmtestjump
+ 0514:09EF       _vmpush
+ 0514:0A28       _vmpop
+ 0514:0A5A       _vmswapstk
+ 0514:0A85       _vmmodstk
+ 05C3:000E       _asheader
+ 05C3:0063       _astrailer
+ 05C3:0079       _asprologue
+ 05C3:00C9       _astext
+ 05C3:00FF       _asdata
+ 05C3:01CB       _gaslint
+ 05C3:01ED       _gasrint
+ 05C3:020F       _outcase
+ 05C3:027B       _asargs
+ 05C3:02BC       _asdumplits
+ 05C3:037B       _asdumpglbs
+ 060A:0005       _findglb
+ 060A:0059       _findloc
+ 060A:00BA       _findtype
+ 060A:013F       _find
+ 060A:019E       _rmtable
+ 060A:0214       _markend
+ 060A:0249       _trimtable
+ 060A:02D4       _addsymbol
+ 0642:000B       __IOERROR
+ 0646:0007       _exit
+ 0649:000A       _atexit
+ 064C:0009       ___pull_free_block
+ 064C:00EC       _malloc
+ 0661:000E       ___brk
+ 0661:0032       ___sbrk
+ 0661:0066       _brk
+ 0661:0075       _sbrk
+ 0669:01BF       _fopen
+ 0669:01E3       _freopen
+ 0669:020B       _fdopen
+ 068C:003A       _open
+ 06A5:0003       __open
+ 06A9:0055       _fseek
+ 06A9:00BD       _ftell
+ 06BB:0088       __fgetc
+ 06BB:009D       _fgetc
+ 06BB:019A       _fgetchar
+ 06D5:0006       _ioctl
+ 06D8:0001       _isatty
+ 06D9:0009       _setvbuf
+ 06E7:0007       _fclose
+ 06F0:0002       _close
+ 06F3:0003       __close
+ 06F5:0009       __xfclose
+ 06F7:000A       __xfflush
+ 06F9:000D       _read
+ 0705:000F       __read
+ 0707:000D       _write
+ 0719:0006       __write
+ 071E:0000       _access
+ 0721:000B       _lseek
+ 0724:0008       __LONGTOA
+ 0724:0087       _itoa
+ 0724:00B1       _ultoa
+ 0724:00CE       _ltoa
+ 0733:0006       __MKNAME
+ 0733:0051       _tmpnam
+ 073B:000D       _unlink
+ 073D:0007       _strcat
+ 0741:0003       _strlen
+ 0743:0000       _strcmp
+ 0746:0001       _strcpy
+ 0748:0005       _memcpy
+ 074A:0006       _setmem
+ 074A:002E       _memset
+ 074E:0007       __chmod
+ 0750:0006       _eof
+ 0757:0006       _fflush
+ 075F:0006       _printf
+ 0761:0005       __fputc
+ 0761:0020       _fputc
+ 0761:015C       _fputchar
+ 0761:0173       __FPUTN
+ 0784:002E       __VPRINTER
+ 07D7:0126       _free
+ 07EB:000F       _fcloseall
+ 07EF:0005       _fprintf
+ 07F1:0003       _fputs
+ 07F4:0006       _abs
+ 07F5:0006       _calloc
+ 07FA:000B       _fnmerge
+ 0802:008F       _fnsplit
+ 0822:0037       _sprintf
+ 0822:0059       _vsprintf
+ 0829:000A       _stpcpy
+ 082C:0005       _strdup
+ 082F:000A       _strncpy
+ 0833:0074       __Int0Vector
+ 0833:0078       __Int4Vector
+ 0833:007C       __Int5Vector
+ 0833:0080       __Int6Vector
+ 0833:0084       __argc
+ 0833:0086       __argv
+ 0833:0088       _environ
+ 0833:008A       __envLng
+ 0833:008C       __envseg
+ 0833:008E       __envSize
+ 0833:0090       __psp
+ 0833:0092       __osmajor
+ 0833:0092       __version
+ 0833:0093       __osminor
+ 0833:0094       _errno
+ 0833:0096       __8087
+ 0833:0098       __StartTime
+ 0833:009C       ___heapbase
+ 0833:009E       ___brklvl
+ 0833:00A0       ___heaptop
+ 0833:00A2       __heapbase
+ 0833:00A6       __brklvl
+ 0833:00AA       __heaptop
+ 0833:00AE       emws_limitSP
+ 0833:016E       emws_initialSP
+ 0833:017A       emws_saveVector
+ 0833:017E       emws_nmiVector
+ 0833:0182       emws_status
+ 0833:0184       emws_control
+ 0833:0186       emws_TOS
+ 0833:0188       emws_adjust
+ 0833:018A       emws_fixSeg
+ 0833:018C       emws_BPsafe
+ 0833:018E       emws_stamp
+ 0833:0192       emws_version
+ 0833:0194       _errcnt
+ 0833:0196       _warncnt
+ 0833:0562       _nxtlab
+ 0833:05AA       _errs
+ 0833:05AC       _id
+ 0833:05E4       _tp
+ 0833:0624       _st
+ 0833:093E       _iflevel
+ 0833:0940       _skiplevel
+ 0833:0942       _mptr
+ 0833:0B04       _lastst
+ 0833:0F42       _M_lib
+ 0833:0F44       _S_lib
+ 0833:0F46       _G_lib
+ 0833:1746       __doserrno
+ 0833:1748       __dosErrorToSV
+ 0833:17A2       __exitbuf
+ 0833:17A6       __exitfopen
+ 0833:17AA       __exitopen
+ 0833:17AE       __heaplen
+ 0833:17B0       __stklen
+ 0833:17B2       __atexitcnt
+ 0833:17B4       __ctype
+ 0833:18B6       __streams
+ 0833:19F6       __openfd
+ 0833:1A1E       __fmode
+ 0833:1A20       __notUmask
+ 0833:1A22       __stdinStarted
+ 0833:1A24       __stdoutStarted
+ 0833:1AE2       __RealCvtVector
+ 0833:1AE6       __ScanTodVector
+ 0833:1AF2       _input2
+ 0833:1AF4       _TRACE
+ 0833:1AF6       _line
+ 0833:1B8C       _cmode
+ 0833:1B8E       _aflag
+ 0833:1B90       _ncmp
+ 0833:1B92       _glbtab
+ 0833:1B94       _litq
+ 0833:2364       _stkp
+ 0833:2366       _loctab
+ 0833:2368       _lptr
+ 0833:236A       _litlab
+ 0833:236C       _endws
+ 0833:236E       _swstp
+ 0833:2370       _ctext
+ 0833:2372       _input
+ 0833:2374       _errfile
+ 0833:2376       _swstlab
+ 0833:243E       _wsptr
+ 0833:2440       _inclsp
+ 0833:2442       _fexitlab
+ 0833:2444       _litptr
+ 0833:2446       _inclstk
+ 0833:244C       _output
+ 0833:244E       _swstcase
+ 0833:2516       _startws
+ 0833:2518       _macstart
+ 0833:251A       _argstk
+ 0833:2526       _mline
+ 0833:25BC       __atexittbl
+ 0833:263C       ___last
+ 0833:263E       ___rover
+ 0833:2640       ___first
+ 0833:2642       __tmpnum
+
+Program entry point at 0000:0000
+

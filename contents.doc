@@ -1,0 +1,50 @@
+MediumC. File contents of the package.
+
+read.me		introduction text
+contents.doc	this file..
+develop.doc	description of the compiler internals
+language.doc	MediumC language syntax summary
+externs.doc     compiler functions summary
+assemble.doc	assembler code generator details
+todo.doc	a long list of wishes..
+
+data.h		global data header file
+defs.h		various typedefs
+externs.h	prototypes for global functions
+error.h		error and warning messages
+
+data.c		global data declarations
+error.c		warning and error processing functions
+expr.c		expression processor
+function.c	function processing functions
+gen.c		file output (assembler code) functions
+io.c		file input (source code) functions
+lex.c		C source lexical checker support functions
+main.c		main() compiler function
+preproc.c	C source preprocessor
+primary.c	primary value processor
+stmt.c		statement processor
+sym.c		global/local declarations processor support functions
+glbsym.c	global declarations processor
+locsym.c	local declarations processor
+while.c		while and switch parser
+vm.c		virtual machine implementation
+code.c		assembler output functions
+listmng.c	compiler linked list processing functions
+c0.s		PIC16C84 assembler startup code
+mcc.exe		MediumC compiler executable
+
+Makefile	Borland C compiler makefile
+Linkfile	Borland tlink linkfile
+
+glibpic.h       original John Favata's
+mlibpic.h	assembler library functions
+slibpic.h
+ee_read.c
+ee-write.c
+getchar.c
+
+catalogues used:
+./mediumc	  compiler source catalogue
+./mediumc/scrap	  temporary catalogue for *.obj files
+./mediumc/include storage for MediumC compiler include files

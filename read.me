@@ -1,0 +1,79 @@
+MediumC PIC-C compiler.
+still in development phase.
+
+This package contains the complete C-source code for MediumC PIC-C compiler.
+
+The compiler is based on the original source of John Favata's (favata@cs.buffalo.edu) 
+port of SmallC (Ron Cain, Dr. Dobb's Journal of Computer Calisthenics & Orthodontia, #45)
+compiler. The code however is nearly in 90% rewriten from scratch.
+It does not compile itself (like SmallC) and is heavily dependent on standard
+C libraries. I used Turbo C (v.2.0) to compile the source. 
+New compiler features include support for structs, unions, enums, ANSI
+function calls and other data types.
+As it no more resembles SmallC I would prefer to call it "MediumC".
+
+The initial work was just an academic exercise aimed at some improvement of
+John's code. However, as the work progressed I became more and more interested
+in writing up just a new compiler. Moreover, I became less and less interested
+in PIC asm output (..). What I ended up is (hopefully) a general purpose parser 
+with the ability of producing whatever assembler output, providing that 
+a suitable set of code generating functions will be provided.
+
+Due to lots of academic work (lectures, labs, etc) I am unable to continue
+the design single handed.
+
+I am releasing the source to general public under GNU licence in hope
+that there are people who would be able to continue and further improve
+the design.  
+
+There is still lots of work and testing to be done. The compiler successfully
+compiles simple programs. I have not tested the more elaborate ones.
+
+To compile the source one needs a C compiler and linker (Turbo/Borland C and
+tlink). The compilation is performed via make and Makefile. Makefile
+has to be edited in order to set up directories and paths to suit individual
+environment.
+
+I have included in this package a list of things needed to be done as well
+as some technical documentation. You all know that reverse engineering is
+a nightmare so please do write lots of comments and make written
+documentation (I keep telling my students about documentation..).
+Whenever you write up some new code please do let me know, so I can include
+your improvements in the "official distribution".
+
+How to compile MediumC compiler.
+Unpack the source (use unzip). Edit Makefile to suit your local environment.
+You can also edit defs.h to set up include directory.
+"make" the compiler. You are done..  
+
+How to compile a PIC program.
+The compiler is invoked from the command line with the following syntax:
+
+mcc [-art] [-d<sym>[=<value>]] [-o<OutputFile>] <InputFile>
+
+switches:
+-a	- indicate # of args passed into functions 
+-r	- trace compiler calls
+-t	- append source lines into asm output
+-d	- define preprocessor symbol
+-o	- specify output file name.
+
+unless -o option is specified the resulting output file has the name identical
+to <InputFile> but with the "s" extension.
+-t and -r  options are useful only for compiler debugging.  
+
+Exit codes.
+On successful compilation the compiler returns ERRORLEVEL 0.
+Other exit codes are reserved for various errors (still in development)
+
+The author:
+Please do let me know about all bugs, improvements:
+
+Janusz J. Mlodzianowski
+University of Gdansk,
+Institute of Experimental Physics.
+Wita Stwosza 57,
+80-952 Gdansk, Poland.
+
+e-mail: fizjm@univ.gda.pl
+http://www.bg.univ.gda.pl/~janusz
