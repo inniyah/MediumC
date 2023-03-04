@@ -7,6 +7,7 @@
 * author: Janusz J. Mlodzianowski, fizjm@univ.gda.pl
 **********************************************************/
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "defs.h"
 #include "data.h"
@@ -89,8 +90,8 @@ entry *find(char *sname)
 
 	if(TRACE) fprintf(output,";find(%s)\n",sname);
 
-	if(ptr=findloc(loctab,sname,ALL)) return(ptr);
-	if(ptr=findglb(glbtab,sname)) return(ptr);
+	if ( (ptr = findloc(loctab, sname,ALL)) ) return(ptr);
+	if ( (ptr = findglb(glbtab, sname)) ) return(ptr);
 	return(NULL);
 }
 
@@ -100,7 +101,7 @@ entry *find(char *sname)
 ************************************************************/
 void rmtable(list *root)
 {
-	entry *p;
+	entry *p, *prev_p;
 
 	if(TRACE) fprintf(output,";rmtable()\n");
 
@@ -109,11 +110,12 @@ void rmtable(list *root)
 	while(p){
 		if((((p->type==UNION)||(p->type==STRUCT))&&(p->ident==IDENT))||
 			(p->ident==FUNCTION)||(p->ident==PROTOTYPE)) rmtable(p->further);
+		prev_p = p->prev;
 		free(p);
-		p=p->prev;
+		p = prev_p;
 	}
-	root->entries=0;
-	root->start=root->end=NULL;
+	root->entries = 0;
+	root->start=root->end = NULL;
 }
 
 /***********************************************************
@@ -134,7 +136,7 @@ entry *markend(void)
 ************************************************************/
 void trimtable(entry *item)
 {
-	entry *p;
+	entry *p, *prev_p;
 
 	if(TRACE) fprintf(output,";trimtable()\n");
 
@@ -143,8 +145,9 @@ void trimtable(entry *item)
 		if((((p->type==UNION)||(p->type==STRUCT))&&(p->ident==IDENT))||
 			(p->ident==FUNCTION)||(p->ident==PROTOTYPE)) rmtable(p->further);
 			loctab->entries--;
+		prev_p = p->prev;
 		free(p);
-		p=p->prev;
+		p = prev_p;
 	}
 	loctab->end=item;
 	loctab->end->endstmt=0;
@@ -158,19 +161,18 @@ void trimtable(entry *item)
 entry *addsymbol(list *root, char *sname, T_storage stor,
                  		T_type typ, T_ident id, unsigned int size)
 {
-	entry *oldptr,*newptr;
-	int	k;
+	entry *newptr;
 
 	if(TRACE) fprintf(output,";addsymbol(%s)\n",sname);
 
-	if(newptr=find(sname)) return(newptr);
+	if (  (newptr = find(sname)) ) return(newptr);
 
 	newptr=(entry *)calloc(1,sizeof(entry));
 
-	if(root->start==NULL){
+	if(root->start==NULL) {
 		root->start=root->end=newptr;
 		newptr->next=newptr->prev=NULL;
-	}else{
+	} else {
 		root->end->next=newptr;
 		newptr->prev=root->end;
 		root->end=newptr;

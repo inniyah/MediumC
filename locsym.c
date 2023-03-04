@@ -7,6 +7,7 @@
 * author: Janusz J. Mlodzianowski, fizjm@univ.gda.pl
 **********************************************************/
 #include <stdio.h>
+#include <stdlib.h>
 #include "defs.h"
 #include "data.h"
 #include "externs.h"
@@ -83,16 +84,15 @@ void dolocmembers(entry *item,T_storage stor)
 void offsetloc1(entry *item, int what)
 {
 	entry *p;
-	int offset=0;
-	int size;
+	int offset = 0;
 
-	if(what==UNION) return;
+	if(what == UNION) return;
 
-	p=item->further->end;
+	p = item->further->end;
 	while(p){
-		p->offset=offset;
-		offset+=p->size;
-		p=p->prev;
+		p->offset = offset;
+		offset += p->size;
+		p = p->prev;
 	}
 }
 
@@ -169,14 +169,13 @@ VERIFY
 void offslocstruct(entry *item)
 {
 	entry *p;
-	int offset=0;
-	int size;
+	int offset = 0;
 
-	p=item->further->end;
-	while(p){
-		p->offset=offset;
-		offset+=p->size;
-		p=p->prev;
+	p = item->further->end;
+	while (p) {
+		p->offset = offset;
+		offset += p->size;
+		p = p->prev;
 	}
 }
 
@@ -189,9 +188,9 @@ void offslocunion(entry *item)
 	entry *p;
 	int size;
 
-	p=item->further->end;
-	while(p){
-		p->offset=size-p->size;
-		p=p->prev;
+	p = item->further->end;
+	while (p) {
+		p->offset = size - p->size;
+		p = p->prev;
 	}
 }
