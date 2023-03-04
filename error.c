@@ -108,7 +108,6 @@ void domsg(int typ, char *err)
 void errorsummary(void)
 {
     entry *ptr;
-    char *k;
     int i;
 
     if(ncmp) error("missing closing bracket");

@@ -44,18 +44,19 @@ int statement(char *fname, int func)
 {
     if((ch()==0) & feof(input)) return(0);
     lastst=0;
-    if(func)
-    if(match("{")) {
-        compound(fname,TRUE);
-        return(lastst);
+    if (func) {
+        if(match("{")) {
+            compound(fname, TRUE);
+            return(lastst);
+        } else {
+            error("function requires compound statement");
+        }
     }
-    else {
-        error("function requires compound statement");
-    }
-    if(match("{"))
-        compound(fname,FALSE);
-    else
+    if (match("{")) {
+        compound(fname, FALSE);
+    } else {
         stst(fname);
+    }
     return(lastst);
 }
 
@@ -315,7 +316,8 @@ void dofor(char *fname)
     statement(fname,FALSE);
     vmjump(pws->wsincr);
     /* jump to increment
-            gnlabel(pws->wsexit);						/* signal exit point */
+            gnlabel(pws->wsexit); */
+    /* signal exit point */
     trimtable(pws->wssym);
     stkp=vmmodstk(pws->wssp);
     delwhile();
