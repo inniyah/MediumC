@@ -1,11 +1,12 @@
 /**********************************************************
-* MediumC PIC C Crosscompiler.  version: beta
-*
-* file:   externs.h
-* date:   January 1999
-*
-* author: Janusz J. Mlodzianowski, fizjm@univ.gda.pl
-**********************************************************/
+ * MediumC PIC C Crosscompiler.  version: beta
+ *
+ * file:   externs.h
+ * date:   January 1999
+ *
+ * author: Janusz J. Mlodzianowski, fizjm@univ.gda.pl
+ **********************************************************/
+
 /* listmng.c */
 extern entry *findglb(list *root,char *sname);
 extern entry *findloc(list *root,char *sname,int part);
@@ -115,8 +116,8 @@ extern wsentry *readswitch(void);
 extern void addcase(int val);
 
 /* vm.c */
-#define underscore()	outbyte('_')
-#define	comment()			outbyte(';')
+#define underscore()    outbyte('_')
+#define comment()           outbyte(';')
 extern void vmgetmem(entry *item);
 extern void putmem(entry *item);
 extern void vmgetloc(entry *item);
