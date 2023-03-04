@@ -100,7 +100,6 @@ int needsub(void)
 int symname(char *sname)
 {
     int k;
-    char    c;
 
     blanks();
     sname[0]=0;

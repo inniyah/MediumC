@@ -8,6 +8,8 @@
  **********************************************************/
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <limits.h>
 
 #include "defs.h"
@@ -19,7 +21,7 @@
 #endif
 
 /* local functions */
-void main(int argc, char *argv[]);
+int main(int argc, char *argv[]);
 char *foname(char *name);
 void version(void);
 void usage(void);
@@ -36,7 +38,7 @@ int errs=0;
 /**********************************************************
  * main compiler function
  ***********************************************************/
-void main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     char    *p;
     char *bp=NULL;

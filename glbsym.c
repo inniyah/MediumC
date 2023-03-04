@@ -8,6 +8,7 @@
  **********************************************************/
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "defs.h"
 #include "data.h"
@@ -40,8 +41,8 @@ void doglobal(T_storage stor)
     else if(match("union"))
         dostrun(glbtab,stor,UNION);
     else {
-        if(!symname(name)) error("Illegal symbol name");
-        if(ptyp=findtype(name))
+        if (!symname(name)) error("Illegal symbol name");
+        if ( (ptyp = findtype(name)) )
             dosymbol(glbtab,ptyp,stor,1);
         else
             newfunc(name,INT);   /* assume int function */
@@ -52,7 +53,7 @@ void doglobal(T_storage stor)
 /*********************************************************
  * process global enum/struct/union declaration
  * syntax:
- * struct/union id {..};			- type id description only
+ * struct/union id {..};     - type id description only
  * struct/union id {..} var; - type id descr and var entry
  * struct/union id var;      - variable entry
  * struct/union {..} var;    - variable entry, no type id
@@ -136,18 +137,19 @@ void doglbmembers(entry *item,T_storage stor)
     item->further=(list*)calloc(1,sizeof(list));
 
     while(!match("}")) {
-        if(match("struct"))
+        if (match("struct"))
             dostrun(item->further,stor,STRUCT);
         else if(match("union"))
             dostrun(item->further,stor,UNION);
         else if(match("enum"))
             dostrun(item->further,stor,ENUM);
         else {
-            if(!symname(name)) error("Illegal symbol name");
-            if(ptyp=findtype(name)) {
+            if (!symname(name)) error("Illegal symbol name");
+            if ( (ptyp = findtype(name)) ) {
                 dosymbol(item->further,ptyp,stor,0);
-            }else
-            error("Declaration syntax error");
+            } else {
+                error("Declaration syntax error");
+            }
         }
     }
 }
@@ -180,22 +182,21 @@ void declstun(list *table, entry *ptyp, T_storage stor)
 {
     T_ident id;
     char sname[NAMESIZE];
-    entry *tmp;
-    int size;
+    entry *tmp = NULL;
 
-    while(1) {
+    while (1) {
         if(match("*"))
-            id=POINTER;
+            id = POINTER;
         else
-            id=VARIABLE;
-        if(!symname(sname)) error("Illegal symbol name");
-        if(findloc(table,sname,PART)) multidef(sname);
+            id = VARIABLE;
+        if (!symname(sname)) error("Illegal symbol name");
+        if (findloc(table, sname, PART)) multidef(sname);
 
         switch(stor) {
             case AUTO:
-                if(table==loctab) stkp-=ptyp->size;
-                tmp=addsymbol(table,sname,stor,ptyp->ident,id,ptyp->size);
-                if(table==loctab) tmp->stkoffs=stkp;
+                if (table == loctab) stkp-=ptyp->size;
+                tmp = addsymbol(table,sname,stor,ptyp->ident,id,ptyp->size);
+                if (table == loctab) tmp->stkoffs=stkp;
                 break;
 
             case PUBLIC:
@@ -208,14 +209,14 @@ void declstun(list *table, entry *ptyp, T_storage stor)
                 error("Ughh, still error in compiler code...");
         }
 
-        /*	here we can initiate values
+        /* here we can initiate values
         if(match("=")){
         }
         */
 
-        tmp->further=ptyp->further;
-        if(match(","))  continue;
-        if(match(";")) return;
+        tmp->further = ptyp->further;
+        if (match(",")) continue;
+        if (match(";")) return;
         error("Declaration syntax error");
         junk();
         return;
